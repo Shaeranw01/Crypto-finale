@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { ThemeProvider } from "next-themes";
 
 export default function Home() {
   return (
