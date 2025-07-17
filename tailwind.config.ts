@@ -6,12 +6,12 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: ["class"],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
         "light-theme": "#f3f5f9",
-        "dark-theme": "bg-gray-950",
+        "dark-theme": "#0a0a0a",
       },
       animation: {
         wobble: "wobble 1.5s ease-in-out infinite",
