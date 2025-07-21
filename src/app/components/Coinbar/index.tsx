@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 import { GoDotFill } from "react-icons/go";
+import formatCompactNumber from "@/utlis/getFormattedPrice";
 
 export default function Coinbar() {
   const [marketData, setMarketData] = useState({
@@ -17,37 +18,20 @@ export default function Coinbar() {
     volume: 0,
     marketCap: 0,
   });
-  const fetchData = async () => {
-    const data = await fetch("https://api.coingecko.com/api/v3/global");
-    let jsonData = await data.json();
-    jsonData = jsonData.data;
-
-    setMarketData({
-      activeCurrencies: jsonData.active_cryptocurrencies,
-      btcCap: jsonData.market_cap_percentage.btc,
-      ethCap: jsonData.market_cap_percentage.eth,
-      volume: jsonData.total_volume.btc,
-      marketCap: jsonData.total_market_cap.btc,
-    });
-
-    return jsonData;
-  };
-
-  function formatCompactNumber(number: number) {
-    if (number < 1000) {
-      return number;
-    } else if (number >= 1000 && number < 1_000_000) {
-      return (number / 1000).toFixed(1).replace(/\.0$/, "") + "K";
-    } else if (number >= 1_000_000 && number < 1_000_000_000) {
-      return (number / 1_000_000).toFixed(1).replace(/\.0$/, "") + "M";
-    } else if (number >= 1_000_000_000 && number < 1_000_000_000_000) {
-      return (number / 1_000_000_000).toFixed(1).replace(/\.0$/, "") + "B";
-    } else if (number >= 1_000_000_000_000 && number < 1_000_000_000_000_000) {
-      return (number / 1_000_000_000_000).toFixed(1).replace(/\.0$/, "") + "T";
-    }
-  }
 
   useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch("https://api.coingecko.com/api/v3/global");
+      let { data } = await response.json();
+
+      setMarketData({
+        activeCurrencies: data.active_cryptocurrencies,
+        btcCap: data.market_cap_percentage.btc,
+        ethCap: data.market_cap_percentage.eth,
+        volume: data.total_volume.btc,
+        marketCap: data.total_market_cap.btc,
+      });
+    };
     fetchData();
   }, []);
   return (
@@ -63,11 +47,11 @@ export default function Coinbar() {
 
         <div className="container">
           <BiSolidUpArrow className="w-5 fill-teal-500 "></BiSolidUpArrow>
-          <div>{formatCompactNumber(marketData.marketCap)}</div>
+          <div>{formatCompactNumber(marketData?.marketCap)}</div>
         </div>
         <div className="container">
           <GoDotFill fill="white"></GoDotFill>
-          <div>{formatCompactNumber(marketData.volume)} </div>
+          <div>{formatCompactNumber(marketData?.volume)} </div>
         </div>
         <div className="container">
           <div className=" rounded-full">
@@ -85,7 +69,7 @@ export default function Coinbar() {
           <div className="bg-gray-400 rounded-full w-[15rem] h-2">
             <div
               className="bg-yellow-500 rounded-full h-2 "
-              style={{ width: `${marketData.btcCap}%` }}
+              style={{ width: `${marketData?.btcCap}%` }}
             ></div>
           </div>
         </div>
@@ -103,7 +87,7 @@ export default function Coinbar() {
           <div className="bg-gray-400 rounded-full w-[15rem] h-2">
             <div
               className=" bg-blue-400 rounded-full  h-2"
-              style={{ width: `${marketData.ethCap}%` }}
+              style={{ width: `${marketData?.ethCap}%` }}
             ></div>
           </div>
         </div>
