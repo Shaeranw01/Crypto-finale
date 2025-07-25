@@ -39,4 +39,5 @@ export interface Coin {
   purchaseDate?: string;
   purchaseAmount?: number;
   uid?: string;
+  isEdit?: boolean;
 }
