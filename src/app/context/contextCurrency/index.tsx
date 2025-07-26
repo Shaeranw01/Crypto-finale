@@ -2,15 +2,16 @@
 
 import { useState, useEffect, createContext } from "react";
 
-import { Coin } from "@/interfaces/Coininterface";
+import { Coin } from "@/app/interfaces/Coininterface";
+import { CoinContextType } from "@/app/interfaces/CoinContextType";
 
-export const CoinDataContext = createContext();
+export const CoinDataContext = createContext<CoinContextType | null>(null);
 
-export const CoinContext = ({ children }) => {
+export const CoinContext = ({ children }: { children: React.ReactNode }) => {
   const [coinData, setData] = useState<Coin[]>([]);
   const [page, setPage] = useState<number>(1);
   const [showConvertor, setShowConvertor] = useState<boolean>(false);
-  const [selectedCurrency, setCurrency] = useState<string>("usd");
+  const [selectedCurrency, setSelectedCurrency] = useState<string>("usd");
 
   const [showComparison, setShowComparison] = useState<boolean>(false);
   useEffect(() => {
@@ -38,6 +39,8 @@ export const CoinContext = ({ children }) => {
         setShowConvertor,
         showComparison,
         setShowComparison,
+        selectedCurrency,
+        setSelectedCurrency,
       }}
     >
       {children}

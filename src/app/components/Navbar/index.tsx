@@ -13,9 +13,6 @@ import { useCoinContext } from "@/app/hooks/useCoinContext";
 
 export default function Navbar() {
   const { showConvertor, setShowConvertor } = useCoinContext();
-  function hideConvertor() {
-    setShowConvertor(!showConvertor);
-  }
 
   return (
     <div className=" w-full flex flex-col ">
@@ -30,7 +27,7 @@ export default function Navbar() {
           <div className=" w-64 flex justify-start items-center gap-4 text-lg ">
             <div
               className="flex justify-start items-center gap-2 "
-              onClick={() => hideConvertor()}
+              onClick={() => setShowConvertor(!showConvertor)}
             >
               <Link href="/">
                 <RiHome5Fill className="w-6 h-6  dark:fill-white fill-[#353570]"></RiHome5Fill>
