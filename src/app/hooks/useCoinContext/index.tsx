@@ -1,4 +1,5 @@
-import { CoinDataContext } from "@/app/context/coinDataContext";
+
+import { CoinDataContext } from "@/app/context/contextCurrency";
 import { useContext } from "react";
 
 export function useCoinContext() {
