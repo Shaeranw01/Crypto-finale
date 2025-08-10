@@ -43,7 +43,7 @@ export default function SearchBar() {
 
   return (
     <div
-      className=" h-10 w-full dark:bg-[#191925] bg-[#CCCCFA66] flex  relative flex-col gap-4  p-2 rounded-md "
+      className=" h-10 w-full dark:bg-[#191925] bg-[#CCCCFA66] flex  relative flex-col gap-4 rounded-md "
       ref={ref}
       onClick={toggleDropDown}
     >
