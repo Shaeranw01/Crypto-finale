@@ -16,14 +16,14 @@ export default function Navbar() {
   return (
     <div className="w-full flex flex-col ">
       <Coinbar />
-      <div className="flex justify-center dark:bg-[#13121A] bg-[#FFFFFF] h-20 ">
+      <div className="flex justify-center dark:bg-[#13121A] bg-[#FFFFFF] h-20  items-center">
         <div className="w-11/12  text-white text-2xl p-4 flex justify-between">
-          <div className="w-60 flex justify-start items-center gap-2 text-xl font-bold">
+          <div className="w-60 flex justify-start gap-2 text-xl font-bold items-end">
             <FaCoins className="w-10 h-10 dark:fill-white fill-[#6161D6]"></FaCoins>
-            <div className="text-[#353570] dark:text-white">Coin Trade</div>
+            <span className="text-[#353570] dark:text-white">Coin Trade</span>
           </div>
 
-          <div className="w-64 flex justify-between items-center text-lg">
+          <div className="w-64 flex justify-between items-end text-lg">
             <Link
               href="/"
               className="flex gap-2"
