@@ -52,10 +52,10 @@ export default function SearchBar() {
         value={query}
         onChange={handleChange}
         placeholder="Search..."
-        className="rounded-md w-full outline-none dark:bg-[#191925]  h-full bg-transparent font-light placeholder-[#424286] dark:placeholder-white"
+        className="rounded-md w-full outline-none dark:bg-[#191925]  h-full bg-transparent font-light placeholder-[#424286] dark:placeholder-white text-[#424286] dark:text-white"
       />
       {isOpen && (
-        <div className=" rounded-md z-50 absolute overflow-auto left-0 w-full h-80 mt-6">
+        <div className=" rounded-md z-50 absolute overflow-auto left-0 w-full h-80 mt-11">
           {data.length > 0 &&
             data.map((coin) => (
               <button
