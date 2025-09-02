@@ -89,17 +89,19 @@ export default function Dropdown() {
       </button>
       {isOpen &&
         currencyArray.map(({ name, symbol, id }) => {
-          if (name !== currentCurrency)
-            return (
-              <button
-                key={id}
-                className="flex gap-2 justify-center items-center p-1 dark:text-white dark:bg-[#191925] w-full bg-[#CCCCFA66] text-[#424286] "
-                onClick={() => handleSelect(name, symbol)}
-              >
-                {symbol}
-                <span className="text-lg">{name.toUpperCase()}</span>
-              </button>
-            );
+          if (name === currentCurrency) {
+            return null;
+          }
+          return (
+            <button
+              key={id}
+              className="flex gap-2 justify-center items-center p-1 dark:text-white dark:bg-[#191925] w-full bg-[#CCCCFA66] text-[#424286] "
+              onClick={() => handleSelect(name, symbol)}
+            >
+              {symbol}
+              <span className="text-lg">{name.toUpperCase()}</span>
+            </button>
+          );
         })}
     </div>
   );
