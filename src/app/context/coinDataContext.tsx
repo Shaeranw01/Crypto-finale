@@ -41,8 +41,6 @@ export const CoinContext = ({ children }: { children: React.ReactNode }) => {
     );
     const data = await response.json();
     setData(data);
-    console.log("currency", selectedCurrency);
-    console.log("data", coinData);
   };
 
   const fetchMoreData = async () => {
