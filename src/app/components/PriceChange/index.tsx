@@ -5,7 +5,7 @@ export default function PriceChange({ value }: { value: number }) {
   const valueType: boolean = value >= 0;
   return (
     <div
-      className={`flex items-center gap-1 ${
+      className={`flex items-center ${
         valueType ? "text-teal-400" : "text-red-500"
       }`}
     >
