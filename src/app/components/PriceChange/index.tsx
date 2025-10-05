@@ -1,11 +1,12 @@
+import React from "react";
 import { MdArrowDropUp } from "react-icons/md";
 import { MdArrowDropDown } from "react-icons/md";
 
-export default function PriceChange({ value }: { value: number }) {
+const PriceChange = ({ value }: { value: number }) => {
   const valueType: boolean = value >= 0;
   return (
     <div
-      className={`flex items-center ${
+      className={`flex items-center  ${
         valueType ? "text-teal-400" : "text-red-500"
       }`}
     >
@@ -17,6 +18,6 @@ export default function PriceChange({ value }: { value: number }) {
       {value?.toFixed(2)}%
     </div>
   );
-}
+};
 
-// export default PriceChange;
+export default PriceChange;
