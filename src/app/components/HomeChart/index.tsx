@@ -11,7 +11,7 @@ const HomeChart = () => {
     volumeData: [],
   });
   const { debouncedCurrency } = useCoinContext();
-  const [isClicked, setClicked] = useState("365d");
+  const [isClicked, setClicked] = useState("7d");
   const intervals = {
     "7d": {
       days: 7,
