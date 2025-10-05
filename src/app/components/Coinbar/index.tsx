@@ -10,7 +10,7 @@ import Image from "next/image";
 import { GoDotFill } from "react-icons/go";
 import formatCompactNumber from "@/utlis/getFormattedPrice";
 
-export default function Coinbar() {
+const Coinbar = () => {
   const [marketData, setMarketData] = useState({
     activeCurrencies: 0,
     btcCap: 0,
@@ -94,4 +94,5 @@ export default function Coinbar() {
       </div>
     </div>
   );
-}
+};
+export default Coinbar;

@@ -6,11 +6,12 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 
 import { useCoinContext } from "@/app/hooks/useCoinContext";
-import { Coin } from "@/app/interfaces/Coininterface";
-import HomeComparisonChart from "../HomeComparison";
-import CarouselCoinContainer from "../CarouselCoinContainer";
 
-import { SliderCoin } from "@/app/interfaces/SliderCoinInterface";
+import { Coin } from "@/app/interfaces/Coininterface";
+
+import HomeComparisonChart from "../HomeComparisonChart";
+import CarouselCoinContainer from "../CarouselCoinContainer";
+import { SliderCoin } from "@/interfaces/SliderCoinInterface";
 
 const Carousel = () => {
   const { coinData, showComparison, setShowComparison, selectedCurrency } =
@@ -104,7 +105,7 @@ const Carousel = () => {
       </div>
       <div className="w-full h-[120px]">
         <Slider {...settings}>
-          {sliderData?.map((coin: SliderCoin, index) => (
+          {sliderData?.map((coin: SliderCoin, index: number) => (
             <div key={`${coin.id}-${index}`} onClick={() => handleSelect(coin)}>
               <CarouselCoinContainer
                 selected={coin.selected}

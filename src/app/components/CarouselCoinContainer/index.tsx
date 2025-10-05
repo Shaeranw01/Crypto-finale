@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import PriceChange from "../PriceChange";
 
-export default function CarouselCoinContainer({
+const CarouselCoinContainer = ({
   selected,
   image,
   name,
@@ -18,14 +18,14 @@ export default function CarouselCoinContainer({
   current_price: number;
   price_change_24h: number;
   selectedCurrency: string;
-}) {
+}) => {
   return (
     <div
       className={`${
         selected
           ? " bg-[#6161D680] text-[#424286] dark:bg-[#6161D680] dark:text-white"
           : "bg-white dark:bg-[#232336] text-[#424286]  dark:text-white"
-      } w-[250px] h-[80px] flex items-center  rounded-lg p-2`}
+      } w-[300px] h-[80px] flex items-center  rounded-lg p-2`}
     >
       <Image src={image} width={32} height={32} alt="Picture of the coin" />
 
@@ -43,4 +43,6 @@ export default function CarouselCoinContainer({
       </div>
     </div>
   );
-}
+};
+
+export default CarouselCoinContainer;

@@ -1,20 +1,20 @@
 "use client";
 import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
+
 import "chart.js/auto";
-import { setRequestMeta } from "next/dist/server/request-meta";
-import gradient from "chartjs-plugin-gradient";
+
 import { Bar, Line } from "react-chartjs-2";
-import { Chart } from "chart.js";
+
 import { useCoinContext } from "@/app/hooks/useCoinContext";
 
-export default function HomeCharts() {
+const HomeChart = () => {
   const [chartData, setChartData] = useState({
     datesData: [],
     priceData: [],
     volumeData: [],
   });
   const { debouncedCurrency } = useCoinContext();
+  const [isClicked, setClicked] = useState("365d");
   const intervals = {
     "7d": {
       days: 7,
@@ -29,21 +29,18 @@ export default function HomeCharts() {
       interval: "daily",
     },
   };
-  const bgColor = [
-    "rgba(240,12,147, 1)",
-    "rgba(116, 116, 242, 0.8)",
-    "rgba(240,12,147, 1)",
-    "rgba(179, 116, 242, 0.8)",
-  ];
-  function getGradient(ctx, chartArea, color1, color2) {
+
+  function getGradient(ctx, chartArea, color) {
     let gradient = ctx.createLinearGradient(
       0,
       chartArea.top,
       0,
       chartArea.bottom
     );
-    gradient.addColorStop(0, color1);
-    gradient.addColorStop(1, color2);
+    gradient.addColorStop(0, color);
+    gradient.addColorStop(0.6, color + "99");
+    gradient.addColorStop(0.8, color + "66");
+    gradient.addColorStop(1, color + "00");
     return gradient;
   }
   async function fetchChartData(time: string) {
@@ -113,11 +110,11 @@ export default function HomeCharts() {
 
           // This case happens on initial chart load
           if (!chartArea) return;
-          return getGradient(ctx, chartArea, bgColor[0], bgColor[1]);
+          return getGradient(ctx, chartArea, "#7878FA");
         },
-        borderColor: "rgba(240,12,147, 1)",
+        borderColor: "#7878FA",
 
-        // borderWidth: 2, removed so getting the default border width
+        borderWidth: 1,
 
         tension: 0.4, //to create a curved chart instead of a straight line
         pointRadius: 0, // to remove the dots
@@ -140,7 +137,7 @@ export default function HomeCharts() {
 
           // This case happens on initial chart load
           if (!chartArea) return;
-          return getGradient(ctx, chartArea, bgColor[2], bgColor[3]);
+          return getGradient(ctx, chartArea, "#9D62D9");
         },
         // borderColor: "rgba(120, 120, 250, 1)",
 
@@ -164,26 +161,45 @@ export default function HomeCharts() {
           <Bar data={data2} options={options}></Bar>
         </div>
       </div>
-      <div className="flex gap-3">
+      <div className="w-64 p-2 rounded-lg  bg-[#CCCCFA66] dark:bg-[#232336] flex gap-3 justify-between my-10 text-[#424286]  dark:text-white">
         <button
-          className="w-14 h-10 bg-red-200 rounded-lg p-3"
-          onClick={() => fetchChartData("7d")}
+          className={`${
+            isClicked === "7d" &&
+            "bg-[#6161D680] text-[#424286]  dark:text-white dark:bg-[#6161D680] "
+          } w-16 h-10 rounded-lg p-2`}
+          onClick={() => {
+            fetchChartData("7d");
+            setClicked("7d");
+          }}
         >
           7D
         </button>
         <button
-          className="w-14 h-10 bg-red-200 rounded-lg p-3 "
-          onClick={() => fetchChartData("30d")}
+          className={`${
+            isClicked === "30d" &&
+            "bg-[#6161D680] text-[#424286]  dark:text-white dark:bg-[#6161D680] "
+          } w-16 h-10 rounded-lg p-2`}
+          onClick={() => {
+            fetchChartData("30d");
+            setClicked("30d");
+          }}
         >
           30D
         </button>
         <button
-          className="w-14 h-10 bg-red-200 rounded-lg p-3"
-          onClick={() => fetchChartData("365d")}
+          className={`${
+            isClicked === "365d" &&
+            "bg-[#6161D680] text-[#424286]  dark:text-white dark:bg-[#6161D680] "
+          } w-16 h-10 rounded-lg p-2`}
+          onClick={() => {
+            fetchChartData("365d");
+            setClicked("365d");
+          }}
         >
           365D
         </button>
       </div>
     </div>
   );
-}
+};
+export default HomeChart;

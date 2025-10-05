@@ -1,6 +1,13 @@
 "use client";
 import { useOutsideClick } from "@/app/hooks/useClickOutside";
-import React, { useRef, useState, useEffect, ReactElement } from "react";
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  ReactElement,
+  useContext,
+} from "react";
+import { CoinDataContext } from "@/app/context/coinDataContext";
 
 import { AiOutlineDollar } from "react-icons/ai";
 import { AiOutlineEuroCircle } from "react-icons/ai";
@@ -42,13 +49,15 @@ export const currencyArray: Currency[] = [
   },
 ];
 
-export default function Dropdown() {
+const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [currentCurrency, setCurrency] = useState("usd");
+  // const [currentCurrency, setCurrency] = useState("usd");
   const [currentSymbol, setSymbol] = useState<React.ReactElement>(
     <AiOutlineDollar></AiOutlineDollar>
   );
+
+  const { selectedCurrency, setSelectedCurrency } = useContext(CoinDataContext);
 
   const ref = useRef(null);
 
@@ -71,38 +80,43 @@ export default function Dropdown() {
   }
 
   const handleSelect = (newCurrency: string, newSymbol: React.ReactElement) => {
-    setCurrency(newCurrency);
     setSymbol(newSymbol);
+    setSelectedCurrency(newCurrency);
+    console.log("selected currency in dropdown", newCurrency);
   };
 
   return (
     <div
-      className="w-24 h-10  dark:bg-[#191925] flex flex-col items-center relative  dark:text-white transition delay-150 duration-700 ease-in-out rounded-xl  bg-[#CCCCFA66] text-[#424286]"
+      className="w-24 h-10  dark:bg-[#191925] flex flex-col items-center relative  dark:text-white transition delay-150 duration-700 ease-in-out rounded-lg  bg-[#CCCCFA66] text-[#424286]"
       ref={ref}
     >
       <button
-        className="flex gap-2 justify-center items-center p-1 dark:text-white text-[#424286] rounded-xl"
+        className="w-full flex gap-2 items-center dark:text-white text-[#424286] p-2"
         onClick={toggleDropDown}
       >
         {currentSymbol}
-        <span className="text-lg ">{currentCurrency.toUpperCase()}</span>
+        <span className="text-lg ">{selectedCurrency.toUpperCase()}</span>
       </button>
-      {isOpen &&
-        currencyArray.map(({ name, symbol, id }) => {
-          if (name === currentCurrency) {
-            return null;
-          }
-          return (
-            <button
-              key={id}
-              className="flex gap-2 justify-center items-center p-1 dark:text-white dark:bg-[#191925] w-full bg-[#CCCCFA66] text-[#424286] "
-              onClick={() => handleSelect(name, symbol)}
-            >
-              {symbol}
-              <span className="text-lg">{name.toUpperCase()}</span>
-            </button>
-          );
-        })}
+      {isOpen && (
+        <div className="w-full rounded-lg mt-1 dark:bg-[#191925] bg-[#CCCCFA66]">
+          {currencyArray.map(({ name, symbol, id }) => {
+            if (name === selectedCurrency) {
+              return null;
+            }
+            return (
+              <button
+                key={id}
+                className="w-full flex gap-2 items-center p-2 dark:text-white  text-[#424286]  "
+                onClick={() => handleSelect(name, symbol)}
+              >
+                {symbol}
+                <span className="text-lg">{name.toUpperCase()}</span>
+              </button>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
-}
+};
+export default Dropdown;
