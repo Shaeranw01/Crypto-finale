@@ -28,8 +28,6 @@ const Carousel = () => {
 
   const [selectedSlides, setSelectedSlides] = useState<SliderCoin[]>([]);
 
-  // const coins = coinData.map((coin: Coin) => coin);
-
   function slider(array: SliderCoin[]) {
     setSliderData(array);
   }
@@ -42,16 +40,12 @@ const Carousel = () => {
       }));
 
       slider(coinsInSlides);
-      console.log("coindata", coinData);
-      console.log("coins in slides", coinsInSlides);
     }
   }, [coinData]);
 
   const numberofSelectedSlides: number = sliderData.filter(
     (coin) => coin.selected
   ).length;
-
-  console.log("number", numberofSelectedSlides);
 
   const handleSelect = (coin: SliderCoin) => {
     const updatedSlides = sliderData.map((slide: SliderCoin) => {
@@ -65,13 +59,11 @@ const Carousel = () => {
       return slide;
     });
 
-    console.log("upadtedslides", updatedSlides);
     setSliderData(updatedSlides);
 
     const selectCoins = sliderData.filter((coin) => coin.selected === true);
 
     setSelectedSlides(selectCoins);
-    console.log("selected", selectedSlides);
   };
 
   const handleComparison = () => {
@@ -83,7 +75,7 @@ const Carousel = () => {
         }
         return slide;
       });
-      console.log("unselect", unselectedSlides);
+
       setSliderData(unselectedSlides);
       // setSelectedSlides([]);
     }

@@ -1,10 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-
 import "chart.js/auto";
-
 import { Bar, Line } from "react-chartjs-2";
-
 import { useCoinContext } from "@/app/hooks/useCoinContext";
 
 const HomeChart = () => {
@@ -96,7 +93,6 @@ const HomeChart = () => {
       },
     },
   };
-  // Chart.register(plugin);
 
   const data = {
     labels: label,
@@ -139,9 +135,6 @@ const HomeChart = () => {
           if (!chartArea) return;
           return getGradient(ctx, chartArea, "#9D62D9");
         },
-        // borderColor: "rgba(120, 120, 250, 1)",
-
-        // borderWidth: 2, removed so getting the default border width
 
         tension: 0.4, //to create a curved chart instead of a straight line
         pointRadius: 0, // to remove the dots

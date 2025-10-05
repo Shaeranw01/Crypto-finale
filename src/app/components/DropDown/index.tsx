@@ -82,7 +82,6 @@ const Dropdown = () => {
   const handleSelect = (newCurrency: string, newSymbol: React.ReactElement) => {
     setSymbol(newSymbol);
     setSelectedCurrency(newCurrency);
-    console.log("selected currency in dropdown", newCurrency);
   };
 
   return (
