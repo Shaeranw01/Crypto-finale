@@ -10,7 +10,7 @@ import Coinbar from "../Coinbar";
 import Link from "next/link";
 import { useCoinContext } from "@/app/hooks/useCoinContext";
 
-export default function Navbar() {
+const Navbar = () => {
   const { setShowConvertor } = useCoinContext();
 
   return (
@@ -40,7 +40,7 @@ export default function Navbar() {
           </div>
 
           <div className="w-1/3 flex justify-start items-center gap-4 text-lg ">
-            <div className="w-56 flex justify-start items-center gap-4 dark:bg-[#191925] bg-[#CCCCFA66]  rounded-xl">
+            <div className="w-56 flex justify-start items-center gap-1 dark:bg-[#191925] bg-[#CCCCFA66]  rounded-xl">
               <CiSearch className="w-1/3 h-6 dark:fill-white fill-[#424286]"></CiSearch>
               <SearchBar />
             </div>
@@ -52,4 +52,5 @@ export default function Navbar() {
       </div>
     </div>
   );
-}
+};
+export default Navbar;
