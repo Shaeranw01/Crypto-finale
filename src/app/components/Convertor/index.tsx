@@ -52,8 +52,6 @@ const Convertor = () => {
     setToCoin(fromCoin);
     setFromCoin(toCoin);
     setSwitch(!setSwitch);
-    console.log("new to", toCoin);
-    console.log("new from", fromCoin);
   };
   if (switchMode) {
     fromAmount = amount;
