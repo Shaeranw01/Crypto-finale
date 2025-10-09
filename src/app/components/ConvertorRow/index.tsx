@@ -77,7 +77,7 @@ const ConvertorRow = ({
 
             {showDropdown && (
               <div className="h-auto w-full flex flex-col overflow-y-scroll bg-[#191932] text-white absolute z-10 rounded-2xl top-8 ml-6">
-                {coinList.map((coin) => (
+                {coinList.map((coin: Coin) => (
                   <button
                     key={coin.id}
                     className="p-2 w-full text-white h-12 text-left"
