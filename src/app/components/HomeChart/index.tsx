@@ -65,10 +65,6 @@ const HomeChart = () => {
     [debouncedCurrency]
   );
 
-  useEffect(() => {
-    fetchChartData("365d");
-  }, [fetchChartData]);
-
   const options = {
     layout: {
       padding: {
@@ -122,7 +118,6 @@ const HomeChart = () => {
     };
   }, [chartData]);
 
-  // const dataset2 = chartData.volumeData;
   const barData = useMemo(() => {
     return {
       labels: chartData.datesData,
@@ -147,6 +142,10 @@ const HomeChart = () => {
       ],
     };
   }, [chartData]);
+
+  useEffect(() => {
+    fetchChartData("365d");
+  }, [fetchChartData]);
 
   return (
     <div className="flex flex-col gap-5 ">
