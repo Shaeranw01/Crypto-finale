@@ -34,9 +34,9 @@ const Carousel = () => {
 
   useEffect(() => {
     if (coinData.length > 0) {
-      const coinsInSlides = coinData.map((coin: Coin) => ({
+      const coinsInSlides = coinData.map((coin: Coin, index: number) => ({
         ...coin,
-        selected: false,
+        selected: index === 0,
       }));
 
       slider(coinsInSlides);

@@ -16,7 +16,6 @@ export default function ThemeSwitch() {
   const handleThemeChange = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
-    console.log("theme is", theme);
   };
   if (!mounted) {
     return null;

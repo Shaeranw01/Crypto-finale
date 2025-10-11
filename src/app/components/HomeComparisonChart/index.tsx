@@ -51,7 +51,6 @@ const HomeComparisonChart = ({ id1, id2 }: { id1: string; id2: string }) => {
       `https://api.coingecko.com/api/v3/coins/${coinId1}/market_chart?vs_currency=${debouncedCurrency}&days=${days}&interval=${interval}`
     );
     const jsonData1 = await data1.json();
-    console.log("chart", jsonData1);
 
     const timeArray = jsonData1?.prices?.map((price) =>
       new Date(price[0] * 1000).getDate()
